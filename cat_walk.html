@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8" />
+  <title>Cat Walk</title>
+  <style>
+	.flip-horizontal {
+	  -moz-transform: scaleX(-1);
+	  -webkit-transform: scaleX(-1);
+	  -o-transform: scaleX(-1);
+	  transform: scaleX(-1);
+	  -ms-filter: fliph; /*IE*/
+	  filter: fliph; /*IE*/
+	}
+  </style>
+ </head>
+ <body>
+  
+  <img style="position:absolute;" src="http://www.anniemation.com/clip_art/images/cat-walk.gif">
+
+  <script type="text/javascript">
+  var img = document.getElementsByTagName('img')[0];
+  console.log(img);
+  img.style.position = 'absolute';
+  img.style.left = '0px';
+  var oldLeft = 0;
+  // direction = true means go to right
+  var direction = true;
+  console.log(img.width);
+  function catWalk() {
+  	// if oldLeft = (innerWidth-296)/2, replace image with cat dancing, keep for 10 seconds, then continue
+  	// console.log(innerWidth);
+  	/*if ((oldLeft > ((innerWidth-296) - 10)) && (oldLeft < ((innerWidth-296) + 10))) {
+  	img.src = "http://24.media.tumblr.com/tumblr_mdyg0euCq21riw8svo1_250.gif";
+  	}
+  	else  {
+
+  	//}
+  */
+  	// if you're on the left side and going to the right
+  	if (oldLeft < (innerWidth-296) && direction == true) {
+  		// IT SHOULD ONLY FLIP ONCE and then walk left for forever
+  		walkRight();
+  	}
+  	// once you pass the right wall FLIP and make direction false/left
+  	else if (oldLeft >= (innerWidth-296) && direction == true){
+  		img.className = 'flip-horizontal';
+  		direction = false;
+  	}
+  	// if your direction is left and you're on the right, go left
+  	else if (oldLeft >= 0 && direction == false) {
+  		walkLeft();
+  	}
+  	// once you pass the left wall, FLIP and make direction right
+  	else if (oldLeft < 0 && direction == false) {
+  		img.className = '';
+  		direction = true;
+  	}
+  }
+
+  function walkRight() {
+  	// oldLeft = parseInt(img.style.left);
+  	oldLeft += 10;
+  	img.style.left = oldLeft + 'px';  		
+  	}
+
+  function walkLeft() {
+  	// oldLeft = parseInt(img.style.left);
+    oldLeft -= 10;
+  	img.style.left = oldLeft + 'px';  
+  }
+
+  window.setInterval(catWalk, 50);
+  </script>
+ 
+ </body>
+
+</html>
+
+<!-- 
+start left = 0px
+	add 10px to left 
+	UNTIL left > 1000
+
+THEN
+	ONCE HITS END OF SCREEN
+	flip horizontally
+	subtract
+ -->

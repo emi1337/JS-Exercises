@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>About Me</title>
+  <style>
+  	.listitem {
+  		color: red;
+  	}
+  </style>
+</head>
+<body>
+  <h1>About Me</h1>
+  
+  <ul>
+    <li>Name: <span id="name"></span>
+    <li>Age:  <span id="age"></span>
+    <li>Hometown: <span id="hometown"></span>
+   </ul>
+  <script type="text/javascript">
+  	document.body.style.fontFamily = 'Arial, sans-serif';
+  	// one way to get/set new value
+  	var name = document.getElementById('name');
+  	name.innerHTML = "Emily Gasca";
+  	// more efficient way to get/set new value in one line
+  	document.getElementById('age').innerHTML = "23";
+  	document.getElementById('hometown').innerHTML = "C-TOWN";
+  	// make list of all li items
+  	var listItems = document.getElementsByTagName('li');
+  	// iterate through them, changing their class name to listitem so they could be referred to in the style above
+  	for (var i = 0; i < listItems.length; i++) {
+  		listItems[i].className = 'listitem'
+  	}
+	var newImage = document.createElement('img');
+	newImage.src = 'http://sphotos-b.xx.fbcdn.net/hphotos-prn1/48145_4871772546517_524440796_n.jpg';
+	newImage.style.border = '1px solid red';
+	document.body.appendChild(newImage);
+  </script>
+ </body>
+</html>
